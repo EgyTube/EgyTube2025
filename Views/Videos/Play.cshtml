@@ -1,0 +1,58 @@
+﻿@model EgyTube.ViewModels.PlayViewModel
+@{
+    ViewData["Title"] = Model.Current.Title;
+}
+
+<div class="container my-4">
+    <div class="row">
+        <!-- ===== اليسار: مشغل الفيديو + معلومات الفيديو ===== -->
+        <div class="col-lg-8">
+            <!-- مشغل الفيديو -->
+            <video controls autoplay class="w-100 rounded shadow"
+                   style="max-height:480px; object-fit:cover"
+                   poster="@Model.Current.ThumbnailPath">
+                <source src="@Model.Current.FilePath" type="video/mp4" />
+                عذرًا، متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+
+            <!-- عنوان الفيديو -->
+            <h4 class="mt-3 fw-bold">@Model.Current.Title</h4>
+
+            <!-- معلومات -->
+            <p class="text-muted small">
+                <i class="bi bi-eye"></i> @Model.Current.Views مشاهدة &nbsp;|&nbsp;
+                <i class="bi bi-hand-thumbs-up"></i> @Model.Current.Likes إعجاب &nbsp;|&nbsp;
+                @Model.Current.UploadedAt.ToLocalTime().ToString("dd MMM yyyy")
+            </p>
+
+            <!-- زر إعجاب -->
+            <form method="post" asp-action="Like" asp-route-id="@Model.Current.Id">
+                <button type="submit" class="btn btn-outline-danger">
+                    <i class="bi bi-hand-thumbs-up"></i> إعجاب (@Model.Current.Likes)
+                </button>
+            </form>
+
+            <hr />
+
+            <!-- التعليقات (لاحقًا يمكننا ربطها بالـ ViewModel) -->
+            <h5 class="mb-3">التعليقات</h5>
+            <div class="alert alert-info">
+                سيتم دعم نظام التعليقات لاحقًا إن شاء الله.
+            </div>
+        </div>
+
+        <!-- ===== اليمين: الفيديوهات المقترحة ===== -->
+        <div class="col-lg-4">
+            <h6 class="fw-bold mb-3">فيديوهات مقترحة</h6>
+            @foreach (var vid in Model.Others.Take(6))
+            {
+                <a asp-action="Play" asp-route-id="@vid.Id" class="d-flex mb-3 text-dark text-decoration-none">
+                    <img src="@vid.ThumbnailPath" class="rounded me-2" style="width:120px; height:70px; object-fit:cover;" />
+                    <div class="flex-grow-1">
+                        <div class="fw-bold text-truncate">@vid.Title</div>
+                        <small class="text-muted">@vid.Views مشاهدة</small>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>

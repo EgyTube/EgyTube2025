@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+ 
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    var email = User.Identity!.Name!;
+    <img src="@AvatarHelper.GravatarUrl(email, 32)"
+         class="rounded-circle me-2" style="width:32px;height:32px;" />
+    <span>@email</span>
+
+    <!-- أو احذف النص لو أردت الصورة فقط -->
+}
+
+<div class="d-flex align-items-center gap-2">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <span class="fw-semibold">@UserManager.GetUserName(User)</span>
+        <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="m-0">
+            <button type="submit" class="btn btn-outline-secondary btn-sm">خروج</button>
+        </form>
+    }
+    else
+    {
+        <a asp-area="Identity" asp-page="/Account/Login"
+           class="btn btn-outline-primary btn-sm">دخول</a>
+        <a asp-area="Identity" asp-page="/Account/Register"
+           class="btn btn-primary btn-sm">تسجيل</a>
+    }
+</div>

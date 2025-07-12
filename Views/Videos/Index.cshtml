@@ -1,0 +1,42 @@
+﻿@using EgyTube.Models
+@model IEnumerable<Video>
+@{
+    ViewData["Title"] = "الفيديوهات";
+}
+
+
+<h2 class="mb-4 text-center" style="color:#2c3e50">الفيديوهات</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        لا توجد فيديوهات بعد – جرّب رفع فيديو جديد!
+    </div>
+}
+
+<div class="row">
+    @foreach (var v in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+
+                <!-- مصغّر ثابت؛ النقر ينقلك لصفحة التشغيل -->
+                <a asp-controller="Videos" asp-action="Play" asp-route-id="@v.Id"
+                   class="stretched-link">
+                    <img src="@(v.ThumbnailPath ?? "/images/thumb-placeholder.jpg")"
+                         class="card-img-top"
+                         style="height:200px;object-fit:cover" />
+                </a>
+
+                <div class="card-body">
+                    <h6 class="card-title mb-1 text-truncate" title="@v.Title">
+                        @v.Title
+                    </h6>
+                    <small class="text-muted">
+                        @v.Views مشاهدة &nbsp;|&nbsp; @v.Likes إعجاب
+                    </small>
+                </div>
+            </div>
+        </div>
+    }
+</div>

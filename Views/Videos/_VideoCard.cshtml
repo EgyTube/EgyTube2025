@@ -1,0 +1,35 @@
+﻿@model Video
+
+@functions {
+    string Pretty(double seconds)
+    {
+        var t = TimeSpan.FromSeconds(seconds);
+        return t.Hours > 0 ? t.ToString(@"h\:mm\:ss") : t.ToString(@"mm\:ss");
+    }
+}
+
+<div class="video-card card shadow-sm position-relative">
+    <!-- الصورة المصغّرة -->
+    <img class="card-img-top preview-img"
+         src="@Model.ThumbnailPath"
+         alt="thumbnail" />
+
+    <!-- فيديو يظهر عند مرور المؤشر -->
+    <video class="preview-video card-img-top"
+           muted loop playsinline preload="metadata">
+        <source src="@($"{Model.FilePath}#t=0.1")" type="video/mp4" />
+    </video>
+
+    <!-- شريط العنوان والإحصائيات -->
+    <div class="card-body p-2">
+        <h6 class="card-title text-truncate mb-1" title="@Model.Title">
+            @Model.Title
+        </h6>
+
+        <div class="stats-bar d-flex justify-content-between small rounded px-2">
+            <span><i class="bi bi-eye"></i> @Model.Views</span>
+            <span><i class="bi bi-hand-thumbs-up"></i> @Model.Likes</span>
+            <span><i class="bi bi-clock"></i> @Pretty(Model.Duration)</span>
+        </div>
+    </div>
+</div>

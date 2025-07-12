@@ -1,0 +1,11 @@
+﻿@model IEnumerable<EgyTube.Models.Comment>
+<ul class="list-unstyled">
+    @foreach (var c in Model)
+    {
+        <li class="mb-2">
+            <strong>@(c.User?.UserName ?? "مستخدم")</strong>
+            <small class="text-muted">@c.PostedAt:g</small><br />
+            @Html.Raw(Html.Encode(c.Body))
+        </li>
+    }
+</ul>

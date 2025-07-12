@@ -1,0 +1,53 @@
+﻿@model List<Video>
+
+<div class="text-center mt-5">
+    <h1 class="display-4">
+        مرحبًا بك في <span class="text-danger">EgyTube</span>
+    </h1>
+
+    <p class="lead">
+        منصّة الفيديو المصرية – ارفع، شاهد، وتفاعل مع محتوى المجتمع.
+    </p>
+
+    <a asp-controller="Videos" asp-action="Index"
+       class="btn btn-primary btn-lg mt-3">
+        استكشف الفيديوهات
+    </a>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('.video-card').forEach(card => {
+            const img   = card.querySelector('.preview-img');
+            const video = card.querySelector('.preview-video');
+
+            card.addEventListener('mouseenter', () => {
+              img.style.display   = 'none';
+              video.style.display = 'block';
+              video.currentTime   = 0.1;
+              video.play();
+            });
+
+            card.addEventListener('mouseleave', () => {
+              video.pause();
+              video.style.display = 'none';
+              img.style.display   = 'block';
+            });
+          });
+        });
+    </script>
+    @section Scripts {
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              document.querySelectorAll('.video-card video.thumb').forEach(video => {
+                video.addEventListener('mouseenter', () => {
+                  video.play();
+                });
+                video.addEventListener('mouseleave', () => {
+                  video.pause();
+                  video.currentTime = 0.1;
+                });
+              });
+            });
+        </script>
+    }
+
+</div>

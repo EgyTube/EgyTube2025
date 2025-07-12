@@ -1,0 +1,20 @@
+﻿@* قائمة بسيطة يمكن تعديلها *@
+<nav class="sidebar-nav p-3">
+    <ul class="list-unstyled">
+        <li>
+            <a asp-controller="Videos" asp-action="Index" class="side-link">
+                <i class="bi bi-house-door"></i> الصفحة الرئيسية
+            </a>
+        </li>
+        <li>
+            <a asp-controller="Videos" asp-action="MyVideos" class="side-link">
+                <i class="bi bi-collection-play"></i> فيديوهاتي
+            </a>
+        </li>
+        <li>
+            <a asp-controller="Videos" asp-action="Create" class="side-link">
+                <i class="bi bi-cloud-upload"></i> رفع فيديو
+            </a>
+        </li>
+    </ul>
+</nav>
