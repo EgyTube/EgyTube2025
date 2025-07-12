@@ -1,23 +1,16 @@
-﻿# المرحلة الأولى: بناء الصورة الأساسية لتشغيل التطبيق
+﻿# مرحلة التشغيل
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-# المرحلة الثانية: بناء المشروع
+# مرحلة البناء
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
+COPY . .
+RUN dotnet restore
+RUN dotnet publish -c Release -o /app/publish
 
-# نسخ ملف المشروع (تأكد أن اسم الملف صحيح ومطابق)
-COPY EgyTube.csproj ./
-RUN dotnet restore "./EgyTube.csproj"
-
-# نسخ باقي ملفات المشروع
-COPY . ./
-
-# نشر المشروع
-RUN dotnet publish "./EgyTube.csproj" -c Release -o /app/publish
-
-# المرحلة النهائية: إعداد الصورة النهائية
+# المرحلة النهائية
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
