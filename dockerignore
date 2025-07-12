@@ -1,0 +1,26 @@
+﻿# ملفات عامة لا نحتاجها داخل الحاوية
+.git
+.gitignore
+.vscode
+*.user
+*.suo
+*.db
+*.sqlite
+*.md
+*.log
+
+# ملفات نشر مؤقتة
+bin/
+obj/
+build/
+node_modules/
+
+# ملفات إعدادات Visual Studio
+*.csproj.user
+*.sln.docstates
+
+# ملفات الفيديو المحلية (يمكن تحميلها لاحقًا من قاعدة البيانات أو سحابة)
+wwwroot/videos/
+
+# ملف Docker نفسه
+Dockerfile

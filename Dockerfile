@@ -1,23 +1,23 @@
-﻿# Use official ASP.NET Core runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+﻿# المرحلة الأولى: بناء الصورة الأساسية لتشغيل التطبيق
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-# Use SDK image to build the app
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+# المرحلة الثانية: بناء المشروع
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy csproj and restore as distinct layers
-COPY *.sln .
-COPY EgyTube/*.csproj ./EgyTube/
-RUN dotnet restore
+# نسخ ملف المشروع (تأكد أن اسم الملف صحيح ومطابق)
+COPY EgyTube.csproj ./
+RUN dotnet restore "./EgyTube.csproj"
 
-# Copy everything else and build
-COPY . .
-WORKDIR /src/EgyTube
-RUN dotnet publish -c Release -o /app/publish
+# نسخ باقي ملفات المشروع
+COPY . ./
 
-# Final stage/image
+# نشر المشروع
+RUN dotnet publish "./EgyTube.csproj" -c Release -o /app/publish
+
+# المرحلة النهائية: إعداد الصورة النهائية
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .

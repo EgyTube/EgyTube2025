@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ★  قاعدة البيانات (SQL Server)
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
-    opt.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // ★  هوية ASP.NET (تسجيل/دخول)
 builder.Services.AddDefaultIdentity<IdentityUser>(opts =>

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EgyTube")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a906763230b79ded47dd7f8e004597a35f28222")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7b31208d206c8104a83be866400fc9a593b17eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("EgyTube")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EgyTube")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
