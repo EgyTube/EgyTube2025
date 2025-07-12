@@ -2,28 +2,29 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- حزمة Google مرجع واحد فقط -->
+		<!-- مراجع خاصة بـ Google -->
 		<PackageReference Include="CliWrap" Version="3.9.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.0" />
 
-		<!-- حزم EF Core / الهوية -->
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.6" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.6">
+		<!-- حزم EF Core -->
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+
+		<!-- دعم PostgreSQL (اختياري) -->
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
 	</ItemGroup>
 
-	<!-- مجلّد للملفات المرفوعة -->
+	<!-- مجلد الملفات المرفوعة -->
 	<ItemGroup>
 		<Folder Include="wwwroot\videos\" />
 	</ItemGroup>
